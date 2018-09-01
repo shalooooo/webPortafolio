@@ -1,4 +1,7 @@
-<%@page import="BLL.*"%>
+<%@page import="DAO.Conexion"%>
+<%@page import="DAO.UsuarioDAO"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="BLL.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,8 +66,7 @@ desired effect
 
         <div class="login-box-body">
     <p class="login-box-msg">Ingresa tus credenciales para iniciar tu sesion</p>
-
-    <form action="../../index2.html" method="post">
+    <form action="actions/ValidarUsuario.jsp">
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

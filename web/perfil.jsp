@@ -1,3 +1,14 @@
+<%@page import="BLL.Usuario"%>
+
+<%
+    Usuario usuario;
+    HttpSession miSesion = request.getSession();
+    if(miSesion.getAttribute("usuario") == null){
+        response.sendRedirect("ingresar.jsp");
+    } else {
+        usuario = (Usuario) miSesion.getAttribute("usuario");
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +59,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header"><center>    
       <h1>
-        Registro
+        Mi Perfil
       </h1></center>
     </section>
 
@@ -60,7 +71,7 @@ desired effect
         -------------------------->
 
         <div class="login-box-body">
-    <p class="login-box-msg">Ingresa tus datos y crea tu cuenta personal</p>
+    <p class="login-box-msg">Estos son tus datos personales</p>
 
     <form action="../../index2.html" method="post">
       <div class="form-group has-feedback">
@@ -115,3 +126,4 @@ desired effect
     <jsp:include page="includes/scripts.jsp"></jsp:include>
 </body>
 </html>
+

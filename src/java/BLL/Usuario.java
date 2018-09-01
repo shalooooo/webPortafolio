@@ -34,7 +34,7 @@ public class Usuario {
     
     // Constructor con parametros
     public Usuario(int idUsuario, String nombre, int rut, String dv, String apePaterno, String apeMaterno, String email, String telefono, String password, int rolId, int estadoUsuarioId, int cuentaId, int tarjetaId) {
-        setIdUsuario(idUsuario);
+        //setIdUsuario(idUsuario);
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.rut = rut;
