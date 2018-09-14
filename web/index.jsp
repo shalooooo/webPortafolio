@@ -1,3 +1,8 @@
+<%@page import="DAO.Conexion"%>
+<%@page import="BLL.Usuario"%>
+<%@page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%@ page import="java.sql.*, java.util.*, java.net.*, 
+   oracle.jdbc.*, oracle.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,26 +10,6 @@
 <jsp:include page="includes/head.jsp"></jsp:include>
 
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -56,26 +41,50 @@ desired effect
             
       <!--------------------------
         | Your Page Content Here |
+      
         -------------------------->
+        <%
+            
+            Conexion conn = new Conexion();
+            
+              if(conn.getConection() == null)
+              {
+                  out.println("ERRROOOR ");
+              }
+              else
+              {
+                out.println("Conectado ");
+                Usuario usuario = null;
+                HttpSession miSesion = request.getSession();
+                if(miSesion.getAttribute("usuario") == null){
+                    //response.sendRedirect("ingresar.jsp");
+                } else {
+                    usuario = (Usuario) miSesion.getAttribute("usuario");
+                    out.println(usuario.getNombre());
+                    
+                }
+                
+              }
+              
+            
+            
+            
+        %>
 
         <div class="login-box-body">
-    <p class="login-box-msg">Ingresa una direcición y encuentra los estacionamientos cercanos</p>
+    <p class="login-box-msg">Ingresa una direcciÃ³n y encuentra los estacionamientos cercanos</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="#" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <input type="email" class="form-control" placeholder="Ejemplo: Av. Concha y Toro 1340, Puente Alto">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Buscar</button>
         </div>
         <!-- /.col -->
       </div>

@@ -1,9 +1,9 @@
 <%@page import="BLL.Usuario"%>
 
 <%
-    Usuario usuario;
+    Usuario usuario = null;
     HttpSession miSesion = request.getSession();
-    if(miSesion.getAttribute("usuario") == null){
+    if(miSesion.getAttribute("usuario") != null){
         response.sendRedirect("ingresar.jsp");
     } else {
         usuario = (Usuario) miSesion.getAttribute("usuario");

@@ -1,7 +1,11 @@
 <%@page import="DAO.Conexion"%>
 <%@page import="DAO.UsuarioDAO"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="BLL.Usuario"%>
+<%@ page import="   java.sql.*, 
+                    java.util.*, 
+                    java.net.*, 
+                    oracle.jdbc.*, 
+                    oracle.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +13,7 @@
 <jsp:include page="includes/head.jsp"></jsp:include>
 
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -68,11 +53,11 @@ desired effect
     <p class="login-box-msg">Ingresa tus credenciales para iniciar tu sesion</p>
     <form action="actions/ValidarUsuario.jsp">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="Email" name="txtEmail">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" name="txtPassword">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
