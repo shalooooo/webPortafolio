@@ -101,7 +101,7 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
 
-    public void insertarUsuario(Usuario usu)
+    public boolean insertarUsuario(Usuario usu)
     {
         OracleCallableStatement cs = null;
         Connection cn = conn.getCnn();
@@ -132,8 +132,10 @@ public class UsuarioDAO {
             cs.setInt(11,usu.getCuentaId());
             cs.setInt(12,usu.getTarjetaId());
             cs.execute();
+            return true;
         } catch (Exception mensaje) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, mensaje);
+            return false;
         }
     }
 

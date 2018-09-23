@@ -8,7 +8,14 @@
 <head>
 <!-- Head -->
 <jsp:include page="includes/head.jsp"></jsp:include>
-
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Places Search Box</title>
+    <style>
+      #map {
+        height: 100%;
+      }
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -38,45 +45,18 @@
 
     <!-- Main content -->
     <section class="content container-fluid">
-            
+    
       <!--------------------------
         | Your Page Content Here |
       
         -------------------------->
-        <%
-            
-            Conexion conn = new Conexion();
-            
-              if(conn.getConection() == null)
-              {
-                  out.println("ERRROOOR ");
-              }
-              else
-              {
-                out.println("Conectado ");
-                Usuario usuario = null;
-                HttpSession miSesion = request.getSession();
-                if(miSesion.getAttribute("usuario") == null){
-                    //response.sendRedirect("ingresar.jsp");
-                } else {
-                    usuario = (Usuario) miSesion.getAttribute("usuario");
-                    out.println(usuario.getNombre());
-                    
-                }
-                
-              }
-              
-            
-            
-            
-        %>
 
-        <div class="login-box-body">
+<div class="login-box-body">
     <p class="login-box-msg">Ingresa una dirección y encuentra los estacionamientos cercanos</p>
 
-    <form action="#" method="post">
+    <form action="" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Ejemplo: Av. Concha y Toro 1340, Puente Alto">
+        <input type="text" class="form-control" placeholder="Ejemplo: Av. Concha y Toro 1340, Puente Alto" name="txtDireccion" id="pac-input" >
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
       </div>
       <div class="row">
@@ -88,9 +68,79 @@
         </div>
         <!-- /.col -->
       </div>
+        
     </form>
+    
+    <script>
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.436933, lng: -70.6344347},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
 
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+    <div id="map"></div>
   </div>
     </section>
     <!-- /.content -->

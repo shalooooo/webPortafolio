@@ -5,6 +5,8 @@
  */
 package BLL;
 
+import java.util.Date;
+
 /**
  *
  * @author Gonzalo

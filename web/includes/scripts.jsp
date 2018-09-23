@@ -6,7 +6,9 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-
+<!-- API Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcgvK_dnptx5NcLh3CwzhCbEpl2n8qOgM&libraries=places&callback=initAutocomplete"
+         async defer></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

@@ -1,31 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Head -->
 <jsp:include page="includes/head.jsp"></jsp:include>
-
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -62,29 +39,37 @@ desired effect
         <div class="login-box-body">
     <p class="login-box-msg">Ingresa tus datos y crea tu cuenta personal</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="actions/RegistrarUsuario.jsp" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="RUT">
+          <input type="text" class="form-control" placeholder="RUT" name="txtRut">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Nombre">
+          <input type="text" class="form-control" placeholder="Nombre" name="txtNombre">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Apellido Paterno">
+        <input type="text" class="form-control" placeholder="Apellido Paterno" name="txtApePaterno">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Apellido Materno">
+        <input type="text" class="form-control" placeholder="Apellido Materno" name="txtApeMaterno">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="Email" name="txtEmail">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="text" class="form-control" placeholder="Telefono" name="txtTelefono">
+        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Contraseña" name="txtPassword">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Repita Contraseña" name="txtPassword2">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
