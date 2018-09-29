@@ -22,7 +22,7 @@ import java.util.List;
 public class VehiculoDAO {
 
 	Conexion conn;
-    
+
     public VehiculoDAO()
     {
         conn = new Conexion();
@@ -77,11 +77,53 @@ public class VehiculoDAO {
     }
 
 
+    public boolean insertarVehiculo(Vehiculo vehiculo)
+    {
+        OracleCallableStatement cs = null;
+        Connection cn = conn.getCnn();
+        try {
+            //PROCEDURE SP_INSERTAR_VEHICULO(P_PATENTE VEHICULO.PATENTE%TYPE);
+            cs = (OracleCallableStatement) cn.prepareCall(" { call VEHICULO_PKG.SP_INSERTAR_VEHICULO(?)}");
+            cs.setString(1, vehiculo.getPatente());
+            cs.execute();
+            return true;
+        } catch (Exception mensaje) {
+            Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null, mensaje);
+            return false;
+        }
+    }
 
-	//PROCEDURE SP_INSERTAR_VEHICULO(P_PATENTE VEHICULO.PATENTE%TYPE);
-    
-	//PROCEDURE SP_ELIMINAR_VEHICULO(P_ID_VEHICULO VEHICULO.ID_VEHICULO%TYPE);
+    public boolean eliminarVehiculo(int id)
+    {
+        OracleCallableStatement cs = null;
+        Connection cn = conn.getCnn();
+        try {
+            //PROCEDURE SP_ELIMINAR_VEHICULO(P_ID_VEHICULO VEHICULO.ID_VEHICULO%TYPE);
+            cs = (OracleCallableStatement)cn.prepareCall(" { call VEHICULO_PKG.SP_ELIMINAR_VEHICULO(?)}");
+            cs.setInt(1, id);
+            cs.execute();
+            return true;
+        } catch (Exception mensaje) {
+            Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null, mensaje);
+            return false;
+        }
+    }
 
-	//PROCEDURE SP_MODIFICAR_VEHICULO( P_ID_VEHICULO VEHICULO.ID_VEHICULO%TYPE, P_PATENTE VEHICULO.PATENTE%TYPE);
-
+    public boolean modificarVehiculo(Vehiculo vehiculo)
+    {
+        OracleCallableStatement cs = null;
+        Connection cn = conn.getCnn();
+        try {
+            //PROCEDURE SP_MODIFICAR_VEHICULO( P_ID_VEHICULO VEHICULO.ID_VEHICULO%TYPE, P_PATENTE VEHICULO.PATENTE%TYPE);
+            cs = (OracleCallableStatement)cn.prepareCall(" { call VEHICULO_PKG.SP_MODIFICAR_VEHICULO(?,?)}");
+            cs.setInt(1,vehiculo.getIdVehiculo());
+            cs.setString(2,vehiculo.getPatente());
+            cs.execute();
+            return true;
+        } catch (Exception mensaje) {
+            Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null, mensaje);
+            return false;
+        }
+    }
+	
 }
