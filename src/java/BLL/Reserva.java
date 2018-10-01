@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Gonzalo
  */
 public class Reserva {
-    
+
     // Variables
     private int idReserva;
     private Date tiempoInicio;
@@ -23,13 +23,13 @@ public class Reserva {
     private int minutosUsados;
     private int total;
     private int estPagoId;
-    private int vehiculoid;
-    
+    private int vehiculoId;
+
     // Constructores
     public Reserva() {
     }
 
-    public Reserva(int idReserva, Date tiempoInicio, Date tiempoFin, int estacionamientoId, int usuarioId, int montoTarifa, int minutosUsados, int total, int estPagoId, int vehiculoid) {
+    public Reserva(int idReserva, Date tiempoInicio, Date tiempoFin, int estacionamientoId, int usuarioId, int montoTarifa, int minutosUsados, int total, int estPagoId, int vehiculoId) {
         setIdReserva(idReserva);
         setTiempoInicio(tiempoInicio);
         setTiempoFin(tiempoFin);
@@ -39,9 +39,9 @@ public class Reserva {
         setMinutosUsados(minutosUsados);
         setTotal(total);
         setEstPagoId(estPagoId);
-        setVehiculoid(vehiculoid);
+        setVehiculoId(vehiculoId);
     }
-    
+
     // Accesadores
 
     public int getIdReserva() {
@@ -80,10 +80,10 @@ public class Reserva {
         return estPagoId;
     }
 
-    public int getVehiculoid() {
-        return vehiculoid;
+    public int getVehiculoId() {
+        return vehiculoId;
     }
-    
+
     // Mutadores
 
     public void setIdReserva(int idReserva) {
@@ -122,9 +122,9 @@ public class Reserva {
         this.estPagoId = estPagoId;
     }
 
-    public void setVehiculoid(int vehiculoid) {
-        this.vehiculoid = vehiculoid;
+    public void setVehiculoId(int vehiculoId) {
+        this.vehiculoId = vehiculoId;
     }
-    
-    
+
+
 }
