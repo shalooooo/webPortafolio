@@ -28,20 +28,50 @@
         Registro
       </h1></center>
     </section>
-
+    <%  
+        
+        String resultado = (String) request.getAttribute("resultado");
+        //resultado = "0";
+        if (resultado != null) {
+                if (resultado.equals("1")) {
+                    %>
+                        <div id="mensaje-verde" class="alert alert-success alert-dismissible" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Registro Exitoso!</h4>
+                            Ahora puedes iniciar tu sesion y reservar los mejores estacionamientos de santiago.
+                        </div> 
+                    <%
+                } else {
+                    if(resultado.equals("0")){
+                    %>
+                        <div id="mensaje-rojo" class="alert alert-danger alert-dismissible" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-ban"></i> Registro Fallido!</h4>
+                            Favor intentalo nuevamente.
+                        </div>
+                    <%
+                    }  
+                }
+            }
+        
+        
+    %>
     <!-- Main content -->
     <section class="content container-fluid">
+            
+            
+              
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
 
-        <div class="login-box-body">
+  <div class="login-box-body">
     <p class="login-box-msg">Ingresa tus datos y crea tu cuenta personal</p>
-
-    <form action="actions/RegistrarUsuario.jsp" method="post">
+    <form action="RegistrarCliente" method="post">
       <div class="form-group has-feedback">
           <input type="text" class="form-control" placeholder="RUT" name="txtRut">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Digito Verificador del RUT" name="txtDv">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
